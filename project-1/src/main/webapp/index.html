@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Login</title>
+
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+	integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+	crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+	
+</head>
+<body>
+
+	<div class="jumbotron jumbotron-fluid">
+		<div class="container-fluid">
+
+			<div class="class display-4">Welcome, employee</div>
+			<p class="login_instructions">Please login below with your username and password</p>
+
+		</div>
+	</div>
+
+	<div class="container-fluid">
+		<form name="loginForm" onsubmit="sendLogin(event.preventDefault())"> <!-- we can add event listener here to trigger a JS function-->
+			<div class="form-group">
+
+				<label for="uName">USERNAME</label>
+				<input type="text" class="form-control" name="username" id="empUsername" placeholder="Enter Username">
+			</div>
+
+			<div class="form-group">
+
+				<label for="pWord">PASSWORD</label>
+				<input type="password" class="form-control" name="password" id="empPassword" placeholder="Enter Password">
+
+				<div id="warningText"></div>
+
+                <br />
+
+				<button type="submit" class="btn btn-primary">Submit</button>
+
+
+			</div>
+
+		</form>
+
+	</div>
+
+	<script src="scirpts/index.js"></script>
+</body>
+</html>
