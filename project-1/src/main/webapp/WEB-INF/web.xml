@@ -5,13 +5,16 @@
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
   <servlet>
-    <description></description>
-    <display-name>FrontController</display-name>
+    
     <servlet-name>FrontController</servlet-name>
     <servlet-class>com.ers.web.FrontController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>FrontController</servlet-name>
-    <url-pattern>/FrontController</url-pattern>
+    <url-pattern>/login</url-pattern>
+    <url-pattern>/logout</url-pattern>
+    <url-pattern>/employees</url-pattern>
+    <url-pattern>/manager</url-pattern>
   </servlet-mapping>
+  
 </web-app>

@@ -34,10 +34,12 @@ public class EmployeeDaoImpl implements EmployeeDao{
 			stmt.setString(4, e.getPassword());
 			stmt.setBoolean(5, e.getIsManager());;
 			
-			if (!stmt.execute()) return false;
+			if (!stmt.execute()) {
+				return false;
+			}
 			
 		} catch (SQLException ex) {
-			log.warn("Unable to insert user", ex);
+			log.warn("Unable to insert employee", ex);
 			return false;
 		}
 		
@@ -52,13 +54,13 @@ public class EmployeeDaoImpl implements EmployeeDao{
 	@Override
 	public List<Employee> findAll() {
 		
-		List<Employee> list = new ArrayList<>();
-		
+		List<Employee> list = new ArrayList<Employee>();
 		
 		try {
 			
 			Connection conn = ConnectionUtil.getConnection();
-			String sql = "SELECT FROM * employee";
+			
+			String sql = "SELECT * FROM employee";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
 			
@@ -69,21 +71,22 @@ public class EmployeeDaoImpl implements EmployeeDao{
 				String username = rs.getString("username");
 				String password = rs.getString("pass_word");
 				Boolean isManager = rs.getBoolean("is_manager");
+				System.out.println(first_name);
 				
 				Employee e = new Employee(id, first_name, last_name, username, password, isManager);
+				
 				list.add(e);
+				
+				
 			}
 			
-		} catch (SQLException e) {
+		} catch (SQLException ex) {
 			
-			log.warn("Unable to retrieve list of employees");
+			log.warn("Unable to retrieve list of employees", ex);
+			
 			
 		}
-		
-		
 		return list;
 	}
-	
-	
 
 }

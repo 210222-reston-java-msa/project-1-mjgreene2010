@@ -7,13 +7,13 @@ public class Employee {
 	private String lastName;
 	private String username;
 	private String password;
-	private Boolean isManager;
+	private boolean isManager;
 	
 	public Employee() {
 		super();
 	}
 
-	public Employee(int id, String firstName, String lastName, String username, String password, Boolean isManager) {
+	public Employee(int id, String firstName, String lastName, String username, String password, boolean isManager) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -23,7 +23,7 @@ public class Employee {
 		this.isManager = isManager;
 	}
 	
-	public Employee(String firstName, String lastName, String username, String password, Boolean isManager) {
+	public Employee(String firstName, String lastName, String username, String password, boolean isManager) {
 		super();
 	
 		this.firstName = firstName;
@@ -73,11 +73,11 @@ public class Employee {
 		this.password = password;
 	}
 
-	public Boolean getIsManager() {
+	public boolean getIsManager() {
 		return isManager;
 	}
 
-	public void setIsManager(Boolean isManager) {
+	public void setIsManager(boolean isManager) {
 		this.isManager = isManager;
 	}
 
@@ -87,7 +87,7 @@ public class Employee {
 		int result = 1;
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + id;
-		result = prime * result + ((isManager == null) ? 0 : isManager.hashCode());
+		result = prime * result + (isManager ? 1231 : 1237);
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
@@ -110,10 +110,7 @@ public class Employee {
 			return false;
 		if (id != other.id)
 			return false;
-		if (isManager == null) {
-			if (other.isManager != null)
-				return false;
-		} else if (!isManager.equals(other.isManager))
+		if (isManager != other.isManager)
 			return false;
 		if (lastName == null) {
 			if (other.lastName != null)
@@ -138,7 +135,8 @@ public class Employee {
 		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
 				+ ", password=" + password + ", isManager=" + isManager + "]";
 	}
-	
+
+
 	
 	
 	

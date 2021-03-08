@@ -1,0 +1,14 @@
+2021-03-07 13:54:16 INFO  ConnectionUtil:43 - connection successful
+2021-03-07 13:54:16 INFO  ConnectionUtil:52 - connected to db
+2021-03-07 15:31:38 INFO  ConnectionUtil:43 - connection successful
+2021-03-07 15:31:38 INFO  ConnectionUtil:52 - connected to db
+2021-03-07 15:35:29 INFO  ConnectionUtil:43 - connection successful
+2021-03-07 15:35:29 INFO  ConnectionUtil:52 - connected to db
+2021-03-07 15:42:56 INFO  ConnectionUtil:43 - connection successful
+2021-03-07 15:42:56 INFO  ConnectionUtil:52 - connected to db
+2021-03-07 17:32:33 INFO  ConnectionUtil:43 - connection successful
+2021-03-07 17:32:33 INFO  ConnectionUtil:52 - connected to db
+2021-03-07 17:34:37 WARN  ConnectionUtil:45 - unable to obtain a connection to the database
+2021-03-07 17:34:37 INFO  ConnectionUtil:52 - connected to db
+2021-03-07 17:34:58 INFO  ConnectionUtil:43 - connection successful
+2021-03-07 17:34:58 INFO  ConnectionUtil:52 - connected to db

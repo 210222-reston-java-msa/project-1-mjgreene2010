@@ -13,7 +13,7 @@ public class EmployeeService {
 	public static EmployeeDao empDao = new EmployeeDaoImpl();
 	
 	public static boolean insert(Employee e) {
-		return new EmployeeDaoImpl().insert(e);
+		return empDao.insert(e);
 	}
 	
 	public static boolean update(Employee e) {
@@ -40,9 +40,15 @@ public class EmployeeService {
 		//from the method above
 		Employee e = findByUsername(username);
 		
-		if (e == null) return null;
+		if (e == null) {
+			return null;
+		}
 		
-		return (e.getPassword().equals(password)) ? e : null;
+		if (e.getPassword().equals(password)) {
+			return e;
+		} else {
+			return null;
+		}
 	}
-
-}
+		
+	}

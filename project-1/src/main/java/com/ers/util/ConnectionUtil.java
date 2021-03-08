@@ -7,8 +7,8 @@ package com.ers.util;
 	import java.util.Properties;
 	import org.apache.log4j.Logger;
 
-	import com.ers.models.Employee;
-	import com.ers.services.EmployeeService;
+//	import com.ers.models.Employee;
+//	import com.ers.services.EmployeeService;
 
 	public class ConnectionUtil {
 
@@ -52,7 +52,12 @@ package com.ers.util;
 			log.info("connected to db");
 			return conn;
 		}
-
+		
+//		public static void main(String[] args) {
+//			Employee e = new Employee();
+//			
+//			EmployeeService.insert(e);
+//		}
 
 	}
 

@@ -6,7 +6,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ers.util.RequestHelper;
 
+//a special servlet - it will take a request and then send it to a helper, who then processes the request
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
   
@@ -15,7 +17,23 @@ public class FrontController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+
+		//Universal Resource Identifier //rewrite the URL's
+		String URI = request.getRequestURI().replace("/project-1/", "");
+
+		switch (URI) {
+			case "login":
+				RequestHelper.processLogin(request, response);
+				break;
+			case "logout":
+				RequestHelper.processLogout(request, response);
+				break;
+			case "employees":
+				RequestHelper.processEmployees(request, response);
+				break;
+		}
+		
+	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
