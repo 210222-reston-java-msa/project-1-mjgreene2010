@@ -48,7 +48,7 @@ public class RequestHelper {
 		Employee e = EmployeeService.confirmLogin(username, password);
 		
 		if (e != null) {
-			//get the currestion session or create one if it doesn't exist
+			//get the current session or create one if it doesn't exist
 			HttpSession session = req.getSession();
 			session.setAttribute("username", username);
 			

@@ -71,7 +71,6 @@ public class EmployeeDaoImpl implements EmployeeDao{
 				String username = rs.getString("username");
 				String password = rs.getString("pass_word");
 				Boolean isManager = rs.getBoolean("is_manager");
-				System.out.println(first_name);
 				
 				Employee e = new Employee(id, first_name, last_name, username, password, isManager);
 				

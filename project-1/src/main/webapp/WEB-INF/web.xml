@@ -5,7 +5,6 @@
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
   <servlet>
-    
     <servlet-name>FrontController</servlet-name>
     <servlet-class>com.ers.web.FrontController</servlet-class>
   </servlet>
@@ -16,5 +15,14 @@
     <url-pattern>/employees</url-pattern>
     <url-pattern>/manager</url-pattern>
   </servlet-mapping>
-  
+  <servlet>
+    <description></description>
+    <display-name>ErrorServlet</display-name>
+    <servlet-name>ErrorServlet</servlet-name>
+    <servlet-class>com.ers.web.ErrorServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ErrorServlet</servlet-name>
+    <url-pattern>/ErrorServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
