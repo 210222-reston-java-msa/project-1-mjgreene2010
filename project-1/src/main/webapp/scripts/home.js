@@ -24,3 +24,8 @@ if (employee === null) {
         window.location = "http://localhost:8080/project-1/";
     }
 }
+
+
+  $('#myModal').on('hidden.bs.modal', function (event) {
+    $('#myInput').trigger('focus')
+  })
