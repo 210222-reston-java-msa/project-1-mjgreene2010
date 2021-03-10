@@ -13,6 +13,7 @@
     <url-pattern>/login</url-pattern>
     <url-pattern>/logout</url-pattern>
     <url-pattern>/employees</url-pattern>
+    <url-pattern>/reimbursements</url-pattern>
     <url-pattern>/manager</url-pattern>
   </servlet-mapping>
   <servlet>

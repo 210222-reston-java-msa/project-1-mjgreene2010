@@ -30,8 +30,11 @@ CREATE TABLE reimbursement (
 	 
 	); 
 	
-INSERT INTO reimbursement (date_of_expense, amount, reimbursement_type, description, status, employee_id)
+INSERT INTO reimbursement (date_of_expense, amount, reimbursement_type, description, status, employee_id);
 	VALUES ('2020-12-31', 234.43, 'Food', 'Company New Year Party', 'pending', 2 );
 
-SELECT reimbursement.*, employee.first_name, employee.last_name FROM reimbursement JOIN employee USING(id);
-	;
+SELECT reimbursement.*, employee.first_name, employee.last_name FROM reimbursement JOIN employee USING(id)
+
+SELECT employee.first_name, employee.last_name, reimbursement.* FROM employee JOIN reimbursement USING(id);
+
+SELECT * FROM reimbursement;

@@ -13,7 +13,9 @@ import org.apache.log4j.Logger;
 
 import com.ers.models.Employee;
 import com.ers.models.LoginCredentials;
+import com.ers.models.Reimbursement;
 import com.ers.services.EmployeeService;
+import com.ers.services.ReimbursementService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class RequestHelper {
@@ -99,6 +101,20 @@ public class RequestHelper {
 		//4. Use getWriter() from the response object to return the json string
 		PrintWriter pw = res.getWriter();
 		pw.println(json);
+		
+	}
+	
+	public static void processReimbursements(HttpServletRequest req, HttpServletResponse res) throws IOException {
+		
+		res.setContentType("text/json");
+		
+		List<Reimbursement> allReimbursements = ReimbursementService.findAll();
+		
+		String json = om.writeValueAsString(allReimbursements);
+		
+		PrintWriter pw = res.getWriter();
+		pw.println(json);
+		
 		
 	}
 
