@@ -20,26 +20,65 @@ if (employee === null) {
     }
 }
 
+function postExpense() {
+
+    let currentEmployee = JSON.parse(employee);
+
+    let expenseForm = document.getElementById("expense-form");
+    let expenseType = document.getElementById("reimbursement-type").value;
+    let expenseDescription = document.getElementById("description").value;
+    let expenseAmount = document.getElementById("amount").value;
+ 
+
+    expenseForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        // console.log(`type: ${type}`);
+        // console.log(`description: ${description}`);
+        // console.log(`amount: ${amount}`);
+            
+        fetch('http://localhost:8080/project-1/reimbursements', {
+            
+            method: 'POST',
+            headers: {
+                'Content-Type' : 'application/json'
+            },
+            body: JSON.stringify({
+                amount: expenseAmount,
+                reimbursementType: expenseType,
+                description: expenseDescription,
+                eemployee: employee.id,
+                
+                // employee: employee.id
+            })
 
 
-window.onload = function() {
+    })
+
+
+
+}
+
+
+
+window.onload = function () {
     let currentEmployee = JSON.parse(employee)
 
     let table_body = document.getElementById('reimbursement-body');
     table_body.innerHTML = "";
-    let tr="";
+    let tr = "";
 
     // table_body.style.display="none";
 
     fetch('http://localhost:8080/project-1/reimbursements')
         .then(response => response.json())
-        .then(function(data) {
-    
-            for (let i = 0 ; i < data.length; i++) {
+        .then(function (data) {
+
+            for (let i = 0; i < data.length; i++) {
                 if (data[i].employee.id != currentEmployee.id) {
-            
+
                     continue;
-                  
+
                 } else {
 
                     tr += '<tr>'
@@ -50,13 +89,13 @@ window.onload = function() {
                     tr += `<td> ${data[i].status} </td>`
                     tr += `<td> ${data[i].postingDate} </td>`
                     tr += '</tr>'
-                } 
+                }
             }
 
             table_body.innerHTML += tr;
-           
+
         })
-    }
+}
 
 
 $('#myModal').on('hidden.bs.modal', function (event) {

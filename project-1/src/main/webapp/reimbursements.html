@@ -79,19 +79,11 @@
                 </div>
                     <div class="modal-body">
 
-                        <form>
-
-                            <div class="form-group row">
-                                <label for="date-submitted" class="col-sm-2 col-form-label">Data of Expense</label>
-                                <div class="col-sm-10">
-                                    <input type="datetime" class="form-control" id="date-submitted">
-                                </div>
-                            </div>
-
+                        <form name="reimbursement-form" id="expense-form" method="post">
                             <div class="form-group row ">
                                 <label for="reimbursement-type" class="col-sm-2 col-form-label">Reimbursement Type</label>
                                 <div class="col-sm-10">
-                                    <select class="custom-select mr-sm-2" id="reimbursement">
+                                    <select class="custom-select mr-sm-2" id="reimbursement-type">
                                         <option selected>Choose...</option>
                                         <option value="1">Lodging</option>
                                         <option value="2">Food</option>
@@ -114,14 +106,14 @@
                                     <input type="number" class="form-control" id="amount">
                                 </div>
                             </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
                         </form>
 
                     </div>
 
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Submit</button>
-                    </div>
                
             </div>
         </div>

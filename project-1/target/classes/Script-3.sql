@@ -38,3 +38,5 @@ SELECT reimbursement.*, employee.first_name, employee.last_name FROM reimburseme
 SELECT employee.first_name, employee.last_name, reimbursement.* FROM employee JOIN reimbursement USING(id);
 
 SELECT * FROM reimbursement;
+
+ALTER TABLE reimbursement ALTER COLUMN status SET DEFAULT 'pending';
