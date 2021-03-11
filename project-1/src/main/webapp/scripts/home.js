@@ -1,10 +1,10 @@
-let welcome = document.getElementById('welcome');
+let welcome = document.getElementById('welcome_home');
 
 //grap the current user from session
 let employee = sessionStorage.getItem("currentUser");
 
 //if the employee is null, redirect to index.html
-
+window.onload = function() {
 if (employee === null) {
     window.location="http://localhost:8080/project-1/"
 } else {
@@ -12,7 +12,7 @@ if (employee === null) {
 
     console.log(currentEmployee);
 
-    if (currentEmployee != null) welcome.innerHTML = `Welcome ${currentEmployee.firstName} ${currentEmployee.lastName}`;
+    if (currentEmployee != null) welcome.innerText = `Welcome ${currentEmployee.firstName} ${currentEmployee.lastName}`;
 
     function logout() {
         let xhr = new XMLHttpRequest();
@@ -24,8 +24,7 @@ if (employee === null) {
         window.location = "http://localhost:8080/project-1/";
     }
 }
+}
 
 
-  $('#myModal').on('hidden.bs.modal', function (event) {
-    $('#myInput').trigger('focus')
-  })
+
