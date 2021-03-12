@@ -79,16 +79,16 @@
                 </div>
                     <div class="modal-body">
 
-                        <form name="reimbursement-form" id="expense-form" action="/reimbursements.html" method="post">
+                        <form name="reimbursement-form" id="expense-form"  onsubmit="expensePost(event.preventDefault())">
                             <div class="form-group row ">
                                 <label for="reimbursement-type" class="col-sm-2 col-form-label">Reimbursement Type</label>
                                 <div class="col-sm-10">
                                     <select class="custom-select mr-sm-2" id="reimbursement-type">
                                         <option selected>Choose...</option>
-                                        <option value="1">Lodging</option>
-                                        <option value="2">Food</option>
-                                        <option value="3">Travel</option>
-                                        <option value="4">Miscellaneous</option>
+                                        <option value="Lodging">Lodging</option>
+                                        <option value="Food">Food</option>
+                                        <option value="Travel">Travel</option>
+                                        <option value="Miscellaneous">Miscellaneous</option>
                                     </select>
                                 </div>
                             </div>

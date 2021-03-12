@@ -16,6 +16,11 @@ public class ReimbursementService {
 		return rDao.insert(r);	
 	}
 	
+	public static boolean addExpense(double amount, String reimbursementType, String description, Employee e) {
+		
+		return rDao.insert(amount, reimbursementType, description, e);	
+	}
+	
 	public static boolean update(Reimbursement r) {
 	
 		return rDao.update(r);	
@@ -36,6 +41,8 @@ public class ReimbursementService {
 		}
 		return null;
 	}
+	
+
 	
 	public static Reimbursement confirmExpPost(double amount, String reimbursementType, String description, Employee employeeId) {
 		

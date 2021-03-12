@@ -20,50 +20,47 @@ if (employee === null) {
     }
 }
 
-function postExpense() {
+function expensePost() {
+
+
 
     let currentEmployee = JSON.parse(employee);
 
-    let expenseForm = document.getElementById("expense-form");
-    let expenseType = document.getElementById("reimbursement-type").value;
-    let expenseDescription = document.getElementById("description").value;
-    let expenseAmount = document.getElementById("amount").value;
+    let expenseForm = document.getElementById('expense-form');
+    let expenseAmount = document.getElementById('amount').value;
+    let expenseType = document.getElementById('reimbursement-type').value;
+    let expenseDescription = document.getElementById('description').value;
+
     
- 
-
-    expenseForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        // console.log(`type: ${type}`);
-        // console.log(`description: ${description}`);
-        // console.log(`amount: ${amount}`);
+    
             
         fetch('http://localhost:8080/project-1/expensepost', {
             
             method: 'POST',
             body: JSON.stringify({
                 "amount": expenseAmount,
-                "reimbursementType": expenseType,
+                "reimbursement_type": expenseType,
                 "description": expenseDescription,
                 "employee" : {"id" : currentEmployee.id}
             }),
             headers: {
-                'Content-Type' : 'application/json; charset=UTF-8'
-            },
+                'Content-Type' : 'application/json'
+            }
         })
 
-        .then(function(response){
-            return response.json()
-        })
-        .then(function(data){
-            console.log(data)
-        })
-    })
+            .then(response => response.json())
+            
+            .then(json => {
+                console.log(json);
+            });
 
-    onloadTable();
+        
+    }
 
-}
+   
+    
 
+    
 
 
 let onloadTable = window.onload = function () {

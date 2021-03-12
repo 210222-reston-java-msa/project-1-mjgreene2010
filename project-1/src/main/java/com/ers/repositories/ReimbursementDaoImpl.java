@@ -97,6 +97,37 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 	public Reimbursement delete() {
 		return null;
 	}
+
+	@Override
+	public boolean insert(double amount, String reimbursementType, String description, Employee em) {
+		PreparedStatement stmt = null;
+		
+		try {
+			Connection conn = ConnectionUtil.getConnection();
+			String sql = "INSERT INTO reimbursement (amount, reimbursement_type, description, employee_id) " +
+						"VALUES ( ? , ? , ? , ? )";
+			
+			stmt = conn.prepareStatement(sql);
+			stmt.setDouble(1, amount);
+			stmt.setString(2, reimbursementType);
+			stmt.setString(3, description);
+			stmt.setInt(4, em.getId());
+			
+			if (!stmt.execute()) {
+				return false;
+			}
+			
+		} catch (SQLException e) {
+			
+			log.warn("Unable to insert expense", e);
+			return false;
+		}
+		
+		return true;
+
+	}
+
+
 	
 	
 

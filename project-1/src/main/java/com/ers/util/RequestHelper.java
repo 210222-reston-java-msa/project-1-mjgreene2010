@@ -15,6 +15,7 @@ import com.ers.models.Employee;
 import com.ers.models.ExpenseTemplate;
 import com.ers.models.LoginCredentials;
 import com.ers.models.Reimbursement;
+import com.ers.repositories.ReimbursementDaoImpl;
 import com.ers.services.EmployeeService;
 import com.ers.services.ReimbursementService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -133,6 +134,7 @@ public class RequestHelper {
 		//body that represents our request in string format
 		String body = s.toString();
 		log.info(body);
+
 		
 		//Build a model call LoginCredentials which holds a username and password (from JSON --> Java Object)
 		ExpenseTemplate expenseAttempt = om.readValue(body, ExpenseTemplate.class);
@@ -144,6 +146,10 @@ public class RequestHelper {
 		
 		log.info("Employee posted expense amount of " + amount);
 //		Employee e = EmployeeService.confirmLogin(username, password);
+		
+		
+		ReimbursementService.addExpense(amount, reimbursement_type, description, employee);
+		
 		Reimbursement r = ReimbursementService.confirmExpPost(amount, reimbursement_type, description, employee);
 		
 		if (r != null) {
@@ -158,7 +164,7 @@ public class RequestHelper {
 			
 			log.info(employee + " has successfully posted");	
 		} else {
-			res.setStatus(204);//have a connection but no user
+			res.setStatus(201);//have a connection but no user
 		}
 		
 	}
