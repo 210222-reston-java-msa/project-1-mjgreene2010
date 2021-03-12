@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 
 import com.ers.models.Employee;
+import com.ers.models.ExpenseTemplate;
 import com.ers.models.LoginCredentials;
 import com.ers.models.Reimbursement;
 import com.ers.services.EmployeeService;
@@ -114,7 +115,51 @@ public class RequestHelper {
 		
 		PrintWriter pw = res.getWriter();
 		pw.println(json);
+			
+	}
+	
+	public static void processExpense(HttpServletRequest req, HttpServletResponse res) throws IOException {
+		//turn info we receive as the request into a string to process
+		BufferedReader reader = req.getReader();
+		StringBuilder s = new StringBuilder();
 		
+		//Transfer everything from our reader to our string builder
+		String line = reader.readLine();
+		while (line != null) {
+			s.append(line);
+			line = reader.readLine();
+		}
+		
+		//body that represents our request in string format
+		String body = s.toString();
+		log.info(body);
+		
+		//Build a model call LoginCredentials which holds a username and password (from JSON --> Java Object)
+		ExpenseTemplate expenseAttempt = om.readValue(body, ExpenseTemplate.class);
+		
+		double amount = expenseAttempt.getAmount();
+		String reimbursement_type = expenseAttempt.getReimbursement_type();
+		String description = expenseAttempt.getDescription();
+		Employee employee = expenseAttempt.getEmployee();
+		
+		log.info("Employee posted expense amount of " + amount);
+//		Employee e = EmployeeService.confirmLogin(username, password);
+		Reimbursement r = ReimbursementService.confirmExpPost(amount, reimbursement_type, description, employee);
+		
+		if (r != null) {
+			//get the current session or create one if it doesn't exist
+		
+			
+			PrintWriter pw = res.getWriter();
+			res.setContentType("application/json");
+			
+			//this is converting our Java Object (with property firstName!) to JSON format ... that means we can grab the firstName property after we parse it
+			pw.println(om.writeValueAsString(r));
+			
+			log.info(employee + " has successfully posted");	
+		} else {
+			res.setStatus(204);//have a connection but no user
+		}
 		
 	}
 

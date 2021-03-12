@@ -38,7 +38,7 @@ function sendLogin() {
        }
    }
 
-   // 3. xhr.open("POST", http:/localhost:8080/EmployeeDBServlet/url for the loginServlet")
+   // 3. xhr.open("POST", http://localhost:8080/project-1/login for the loginServlet")
 
    xhr.open("POST", "http://localhost:8080/project-1/login" )
 

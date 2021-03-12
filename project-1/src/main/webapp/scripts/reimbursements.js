@@ -28,6 +28,7 @@ function postExpense() {
     let expenseType = document.getElementById("reimbursement-type").value;
     let expenseDescription = document.getElementById("description").value;
     let expenseAmount = document.getElementById("amount").value;
+    
  
 
     expenseForm.addEventListener('submit', function (e) {
@@ -37,31 +38,35 @@ function postExpense() {
         // console.log(`description: ${description}`);
         // console.log(`amount: ${amount}`);
             
-        fetch('http://localhost:8080/project-1/reimbursements', {
+        fetch('http://localhost:8080/project-1/expensepost', {
             
             method: 'POST',
-            headers: {
-                'Content-Type' : 'application/json'
-            },
             body: JSON.stringify({
-                amount: expenseAmount,
-                reimbursementType: expenseType,
-                description: expenseDescription,
-                eemployee: employee.id,
-                
-                // employee: employee.id
-            })
+                "amount": expenseAmount,
+                "reimbursementType": expenseType,
+                "description": expenseDescription,
+                "employee" : {"id" : currentEmployee.id}
+            }),
+            headers: {
+                'Content-Type' : 'application/json; charset=UTF-8'
+            },
+        })
 
-
+        .then(function(response){
+            return response.json()
+        })
+        .then(function(data){
+            console.log(data)
+        })
     })
 
-
+    onloadTable();
 
 }
 
 
 
-window.onload = function () {
+let onloadTable = window.onload = function () {
     let currentEmployee = JSON.parse(employee)
 
     let table_body = document.getElementById('reimbursement-body');
@@ -101,3 +106,7 @@ window.onload = function () {
 $('#myModal').on('hidden.bs.modal', function (event) {
     $('#myInput').trigger('focus')
 })
+
+
+
+

@@ -19,24 +19,19 @@ DROP TABLE IF EXISTS reimbursement;
 CREATE TABLE reimbursement (
 	id SERIAL PRIMARY KEY,
 	posting_date DATE NOT NULL DEFAULT CURRENT_DATE,
-	date_of_expense DATE NOT NULL,
 	amount MONEY NOT NULL,
 	reimbursement_type VARCHAR(50),
 	description VARCHAR(100),
-	status VARCHAR(50),
+	status VARCHAR(50) DEFAULT 'pending',
 	employee_id INTEGER NOT NULL,
 	 	 
 	 CONSTRAINT employee_id_fk FOREIGN KEY(employee_id) REFERENCES employee(id)
 	 
 	); 
 	
-INSERT INTO reimbursement (date_of_expense, amount, reimbursement_type, description, status, employee_id);
-	VALUES ('2020-12-31', 234.43, 'Food', 'Company New Year Party', 'pending', 2 );
+INSERT INTO reimbursement (amount, reimbursement_type, description, employee_id)
+VALUES (234.43, 'Food', 'Company New Year Party', 2), (393.63, 'Food', 'Clients was in town', 1),
+(119.93, 'Travel', 'Flight to LA', 1);
 
-SELECT reimbursement.*, employee.first_name, employee.last_name FROM reimbursement JOIN employee USING(id)
-
-SELECT employee.first_name, employee.last_name, reimbursement.* FROM employee JOIN reimbursement USING(id);
 
 SELECT * FROM reimbursement;
-
-ALTER TABLE reimbursement ALTER COLUMN status SET DEFAULT 'pending';

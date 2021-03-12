@@ -2,6 +2,7 @@ package com.ers.services;
 
 import java.util.List;
 
+import com.ers.models.Employee;
 import com.ers.models.Reimbursement;
 import com.ers.repositories.ReimbursementDao;
 import com.ers.repositories.ReimbursementDaoImpl;
@@ -24,15 +25,33 @@ public class ReimbursementService {
 	return rDao.findAll();
 	}
 	
-	public static Reimbursement findByEmployeeId(int employeeId) {
+	public static Reimbursement findByEmployeeId(Employee e) {
 		
 		List<Reimbursement> all = rDao.findAll();
 		
 		for(Reimbursement r : all) {
-			if (r.getEmployee().getId() == employeeId) {
+			if (r.getEmployee().getId() == e.getId()) {
 				return r;
 			}
 		}
 		return null;
 	}
+	
+	public static Reimbursement confirmExpPost(double amount, String reimbursementType, String description, Employee employeeId) {
+		
+		//from the method above
+		Reimbursement r = findByEmployeeId(employeeId);
+		
+		if (r == null) {
+			return null;
+		}
+		
+		if (r.getAmount() == (amount) && r.getReimbursementType().equals(reimbursementType) && r.getDescription().equals(description)) {
+			return r;
+		} else {
+			return null;
+		}
+	}
+		
+	
 }
