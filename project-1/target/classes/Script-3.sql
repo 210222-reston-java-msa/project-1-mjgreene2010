@@ -25,8 +25,7 @@ CREATE TABLE reimbursement (
 	status VARCHAR(50) DEFAULT 'pending',
 	employee_id INTEGER NOT NULL,
 	 	 
-	 CONSTRAINT employee_id_fk FOREIGN KEY(employee_id) REFERENCES employee(id)
-	 
+	 CONSTRAINT employee_id_fk FOREIGN KEY(employee_id) REFERENCES employee(id) 
 	); 
 	
 INSERT INTO reimbursement (amount, reimbursement_type, description, employee_id)
@@ -35,3 +34,17 @@ VALUES (234.43, 'Food', 'Company New Year Party', 2), (393.63, 'Food', 'Clients 
 
 
 SELECT * FROM reimbursement;
+
+DROP TABLE IF EXISTS manager;
+
+CREATE TABLE manager (
+	id SERIAL PRIMARY KEY,
+	resolved_date DATE DEFAULT CURRENT_DATE,
+	resolved_manager INTEGER ,
+	reimbursement_id INTEGER NOT NULL,
+	
+
+	CONSTRAINT reimbursement_id_fk FOREIGN KEY(reimbursement_id) REFERENCES reimbursement(id)
+)
+
+SELECT * FROM manager;

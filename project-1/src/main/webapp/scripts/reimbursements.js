@@ -20,48 +20,6 @@ if (employee === null) {
     }
 }
 
-function expensePost() {
-
-
-
-    let currentEmployee = JSON.parse(employee);
-
-    let expenseForm = document.getElementById('expense-form');
-    let expenseAmount = document.getElementById('amount').value;
-    let expenseType = document.getElementById('reimbursement-type').value;
-    let expenseDescription = document.getElementById('description').value;
-
-    
-    
-            
-        fetch('http://localhost:8080/project-1/expensepost', {
-            
-            method: 'POST',
-            body: JSON.stringify({
-                "amount": expenseAmount,
-                "reimbursement_type": expenseType,
-                "description": expenseDescription,
-                "employee" : {"id" : currentEmployee.id}
-            }),
-            headers: {
-                'Content-Type' : 'application/json'
-            }
-        })
-
-            .then(response => response.json())
-            
-            .then(json => {
-                console.log(json);
-            });
-
-        
-    }
-
-   
-    
-
-    
-
 
 let onloadTable = window.onload = function () {
     let currentEmployee = JSON.parse(employee)
@@ -99,10 +57,40 @@ let onloadTable = window.onload = function () {
         })
 }
 
+function expensePost() {
 
-$('#myModal').on('hidden.bs.modal', function (event) {
-    $('#myInput').trigger('focus')
-})
+    let currentEmployee = JSON.parse(employee);
+
+    let expenseForm = document.getElementById('expense-form');
+    let expenseAmount = document.getElementById('amount').value;
+    let expenseType = document.getElementById('reimbursement-type').value;
+    let expenseDescription = document.getElementById('description').value;
+
+        fetch('http://localhost:8080/project-1/expensepost', {
+            
+            method: 'POST',
+            body: JSON.stringify({
+                "amount": expenseAmount,
+                "reimbursement_type": expenseType,
+                "description": expenseDescription,
+                "employee" : {"id" : currentEmployee.id}
+            }),
+            headers: {
+                'Content-Type' : 'application/json'
+            }
+        })
+
+            .then(response => response.json())
+            
+            .then(json => {
+                console.log(json);
+            });
+
+            
+    }
+
+
+
 
 
 

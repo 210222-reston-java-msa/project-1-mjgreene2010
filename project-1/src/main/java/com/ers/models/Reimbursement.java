@@ -14,8 +14,6 @@ public class Reimbursement {
 	public Reimbursement() {
 		super();
 	}
-	
-	
 
 	public Reimbursement(int id, String postingDate, double amount, String reimbursementType, String description,
 			String status, Employee employee) {
