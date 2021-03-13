@@ -14,7 +14,9 @@
     <url-pattern>/logout</url-pattern>
     <url-pattern>/employees</url-pattern>
     <url-pattern>/reimbursements</url-pattern>
+    <url-pattern>/managertable</url-pattern>
     <url-pattern>/expensepost</url-pattern>
+    <url-pattern>/managerpost</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>

@@ -17,7 +17,7 @@ public interface ManagerTableDao {
 		
 		public void delete(ManagerTable mt);
 		
-		public boolean insert(Employee e, Reimbursement rId, Reimbursement rStatus);
+		public boolean insert(Employee e, Reimbursement rId);
 
 	
 }

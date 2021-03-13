@@ -3,26 +3,30 @@ package com.ers.models;
 public class ManagerTable {
 	
 	private int id;
-	private Employee managerId;
 	private String resolveDate;
+	private Employee employee;
+	private int reimbursementId;
 	private Reimbursement reimbursement;
 	
 	public ManagerTable() {
 		super();
 	}
 
-	public ManagerTable(int id, Employee managerId, String resolveDate, Reimbursement reimbursement) {
+	public ManagerTable(int id, String resolveDate, Employee employee, int reimbursementId,
+			Reimbursement reimbursement) {
 		super();
 		this.id = id;
-		this.managerId = managerId;
 		this.resolveDate = resolveDate;
+		this.employee = employee;
+		this.reimbursementId = reimbursementId;
 		this.reimbursement = reimbursement;
 	}
-	
-	public ManagerTable(Employee managerId, String resolveDate, Reimbursement reimbursement) {
+
+	public ManagerTable(String resolveDate, Employee employee, int reimbursementId, Reimbursement reimbursement) {
 		super();
-		this.managerId = managerId;
 		this.resolveDate = resolveDate;
+		this.employee = employee;
+		this.reimbursementId = reimbursementId;
 		this.reimbursement = reimbursement;
 	}
 
@@ -34,20 +38,28 @@ public class ManagerTable {
 		this.id = id;
 	}
 
-	public Employee getManagerId() {
-		return managerId;
-	}
-
-	public void setManagerId(Employee managerId) {
-		this.managerId = managerId;
-	}
-
 	public String getResolveDate() {
 		return resolveDate;
 	}
 
 	public void setResolveDate(String resolveDate) {
 		this.resolveDate = resolveDate;
+	}
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
+	public int getReimbursementId() {
+		return reimbursementId;
+	}
+
+	public void setReimbursementId(int reimbursementId) {
+		this.reimbursementId = reimbursementId;
 	}
 
 	public Reimbursement getReimbursement() {
@@ -58,15 +70,14 @@ public class ManagerTable {
 		this.reimbursement = reimbursement;
 	}
 
-	
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((employee == null) ? 0 : employee.hashCode());
 		result = prime * result + id;
-		result = prime * result + ((managerId == null) ? 0 : managerId.hashCode());
 		result = prime * result + ((reimbursement == null) ? 0 : reimbursement.hashCode());
+		result = prime * result + reimbursementId;
 		result = prime * result + ((resolveDate == null) ? 0 : resolveDate.hashCode());
 		return result;
 	}
@@ -80,17 +91,19 @@ public class ManagerTable {
 		if (getClass() != obj.getClass())
 			return false;
 		ManagerTable other = (ManagerTable) obj;
-		if (id != other.id)
-			return false;
-		if (managerId == null) {
-			if (other.managerId != null)
+		if (employee == null) {
+			if (other.employee != null)
 				return false;
-		} else if (!managerId.equals(other.managerId))
+		} else if (!employee.equals(other.employee))
+			return false;
+		if (id != other.id)
 			return false;
 		if (reimbursement == null) {
 			if (other.reimbursement != null)
 				return false;
 		} else if (!reimbursement.equals(other.reimbursement))
+			return false;
+		if (reimbursementId != other.reimbursementId)
 			return false;
 		if (resolveDate == null) {
 			if (other.resolveDate != null)
@@ -102,12 +115,9 @@ public class ManagerTable {
 
 	@Override
 	public String toString() {
-		return "ManagerTable [id=" + id + ", managerId=" + managerId + ", resolveDate=" + resolveDate
-				+ ", reimbursement=" + reimbursement + "]";
+		return "ManagerTable [id=" + id + ", resolveDate=" + resolveDate + ", employee=" + employee
+				+ ", reimbursementId=" + reimbursementId + ", reimbursement=" + reimbursement + "]";
 	}
-	
-	
-	
 	
 	
 

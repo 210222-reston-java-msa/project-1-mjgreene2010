@@ -14,7 +14,7 @@ public interface ReimbursementDao {
 	
 	public List<Reimbursement> findAll();
 	
-	public void delete(Reimbursement r);
+	public Reimbursement delete();
 
 	public boolean insert(double amount, String reimbursementType, String description, Employee e);
 

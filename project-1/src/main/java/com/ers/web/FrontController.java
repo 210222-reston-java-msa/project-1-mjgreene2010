@@ -37,6 +37,13 @@ public class FrontController extends HttpServlet {
 			case "expensepost":
 				RequestHelper.processExpense(request, response);
 				break;
+			case "managerpost":
+				RequestHelper.processManagerDecision(request, response);
+				break;
+			case "managertable":
+				RequestHelper.processManagerTable(request, response);
+				break;
+				
 		}
 		
 	

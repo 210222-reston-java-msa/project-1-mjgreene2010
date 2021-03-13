@@ -4,7 +4,7 @@ import java.util.Date;
 public class Reimbursement {
 	
 	private int id;
-	private String PostingDate;
+	private String postingDate;
 	private double amount;
 	private String reimbursementType;
 	private String description;
@@ -19,7 +19,7 @@ public class Reimbursement {
 			String status, Employee employee) {
 		super();
 		this.id = id;
-		PostingDate = postingDate;
+		this.postingDate = postingDate;
 		this.amount = amount;
 		this.reimbursementType = reimbursementType;
 		this.description = description;
@@ -31,7 +31,7 @@ public class Reimbursement {
 			String status) {
 		super();
 		this.id = id;
-		PostingDate = postingDate;
+		this.postingDate = postingDate;
 		this.amount = amount;
 		this.reimbursementType = reimbursementType;
 		this.description = description;
@@ -50,6 +50,18 @@ public class Reimbursement {
 		this.employee = employee;
 	}
 
+	public Reimbursement(int id2, String posting_date, Double amount2, String reimbursement_type, String description2,
+			String status2, String employee_id) {
+		super();
+		this.id = id;
+		this.postingDate = posting_date;
+		this.amount = amount;
+		this.reimbursementType = reimbursementType;
+		this.description = description;
+		this.status = status;
+		this.employee = employee;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -59,11 +71,11 @@ public class Reimbursement {
 	}
 
 	public String getPostingDate() {
-		return PostingDate;
+		return postingDate;
 	}
 
 	public void setPostingDate(String postingDate) {
-		PostingDate = postingDate;
+		this.postingDate = postingDate;
 	}
 
 	public double getAmount() {
@@ -110,7 +122,7 @@ public class Reimbursement {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((PostingDate == null) ? 0 : PostingDate.hashCode());
+		result = prime * result + ((postingDate == null) ? 0 : postingDate.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(amount);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -131,10 +143,10 @@ public class Reimbursement {
 		if (getClass() != obj.getClass())
 			return false;
 		Reimbursement other = (Reimbursement) obj;
-		if (PostingDate == null) {
-			if (other.PostingDate != null)
+		if (postingDate == null) {
+			if (other.postingDate != null)
 				return false;
-		} else if (!PostingDate.equals(other.PostingDate))
+		} else if (!postingDate.equals(other.postingDate))
 			return false;
 		if (Double.doubleToLongBits(amount) != Double.doubleToLongBits(other.amount))
 			return false;
@@ -165,7 +177,7 @@ public class Reimbursement {
 
 	@Override
 	public String toString() {
-		return "Reimbursement [id=" + id + ", PostingDate=" + PostingDate + ", amount=" + amount
+		return "Reimbursement [id=" + id + ", PostingDate=" + postingDate + ", amount=" + amount
 				+ ", reimbursementType=" + reimbursementType + ", description=" + description + ", status=" + status
 				+ ", employee=" + employee + "]";
 	}
