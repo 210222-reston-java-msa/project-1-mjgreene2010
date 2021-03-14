@@ -10,6 +10,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.ers.models.Employee;
+import com.ers.models.ManagerTable;
 import com.ers.models.Reimbursement;
 import com.ers.util.ConnectionUtil;
 
@@ -74,10 +75,13 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 				String description = rs.getString("description");
 				String status = rs.getString("status");
 				String employee_id = rs.getString("employee_id");
+		
 			
 			
 			Employee em = new Employee(Integer.parseInt(employee_id));
 			Reimbursement r = new Reimbursement(id, posting_date, amount, reimbursement_type, description, status, em);
+			
+			System.out.println(r);
 			
 			expenseList.add(r);
 			}
@@ -126,6 +130,58 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 		return true;
 
 	}
+
+	@Override
+	public List<Reimbursement> findAllM() {
+		
+			
+			List<Reimbursement> managerList = new ArrayList<Reimbursement>();
+			
+			try {
+				Connection conn = ConnectionUtil.getConnection();
+				
+				String sql = "SELECT * FROM reimbursement FULL JOIN manager ON reimbursement.id = manager.reimbursement_id ";
+				
+				PreparedStatement stmt = conn.prepareStatement(sql);
+				
+				
+				ResultSet rs = stmt.executeQuery();
+				
+					while(rs.next()) {
+						
+						int id= rs.getInt("id");
+						String posting_date = rs.getString("posting_date");
+						Double amount = rs.getDouble("amount");
+						String reimbursement_type = rs.getString("reimbursement_type");
+						String description = rs.getString("description");
+						String status = rs.getString("status");
+//						int id = rs.getInt("id");
+						String resolve_date = rs.getString("resolved_date");
+						int resolve_manager = rs.getInt("resolved_manager");
+						int reimbursement_id = rs.getInt("reimbursement_id");
+						String employee_id = rs.getString("employee_id");
+					
+					
+					
+					Employee em = new Employee(Integer.parseInt(employee_id));
+					ManagerTable mt = new ManagerTable(resolve_date, resolve_manager , reimbursement_id);
+					Reimbursement r = new Reimbursement(id, posting_date, amount, reimbursement_type, description, status, mt, em);
+				
+					
+					System.out.println(stmt);
+					managerList.add(r);
+					}
+				
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return managerList;
+		}
+
+	
 
 
 	

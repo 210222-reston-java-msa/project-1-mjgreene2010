@@ -38,6 +38,11 @@ public class Employee {
 		this.isManager = isManager;
 	}
 
+	public Employee(int parseInt, String first_name) {
+		this.id = id;
+		this.firstName = firstName;
+	}
+
 	public int getId() {
 		return id;
 	}

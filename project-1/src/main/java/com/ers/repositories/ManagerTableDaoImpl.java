@@ -29,9 +29,11 @@ public class ManagerTableDaoImpl implements ManagerTableDao{
 			
 			String sql = "INSERT INTO manager (resolved_manager, reimbursment_id) VALUES ( ?, ? )";
 			String sql2 = "INSERT INTO reimbursement (status) VALUES (?)";
+//			String sql2 = "UPDATE reimbursement SET status = (?) WHERE reimbursement.id = (?)
+//			UPDATE reimbursement SET status = 'Approved' WHERE reimbursement.id = 4
 			
 			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, mt.getEmployee().getId());
+			stmt.setInt(1, mt.getResolveManagerId());
 			stmt.setInt(2, mt.getReimbursement().getId());
 			
 			stmt2 = conn.prepareStatement(sql2);
@@ -55,49 +57,53 @@ public class ManagerTableDaoImpl implements ManagerTableDao{
 		return false;
 	}
 
-	@Override
-	public List<ManagerTable> findAll() {
-		
-		List<ManagerTable> managerList = new ArrayList<ManagerTable>();
-		
-		try {
-			Connection conn = ConnectionUtil.getConnection();
-			
-			String sql = "SELECT * FROM manager FULL JOIN reimbursement ON manager.reimbursement_id = reimbursement.id";
-			
-			PreparedStatement stmt = conn.prepareStatement(sql);
-			
-			
-			ResultSet rs = stmt.executeQuery();
-			
-				while(rs.next()) {
-					
-				int id = rs.getInt("id");
-				String resolve_date = rs.getString("resolved_date");
-				int reimbursement_id = rs.getInt("reimbursement_id");
-				int id2 = rs.getInt("id");
-				String posting_date = rs.getString("posting_date");
-				Double amount = rs.getDouble("amount");
-				String reimbursement_type = rs.getString("reimbursement_type");
-				String description = rs.getString("description");
-				String status = rs.getString("status");
-				String employee_id = rs.getString("employee_id");
-				
-				Employee em = new Employee(Integer.parseInt(employee_id));
-				Reimbursement r = new Reimbursement(id2, posting_date, amount, reimbursement_type, description, status, employee_id);
-				ManagerTable mt = new ManagerTable(id, resolve_date, em, reimbursement_id , r);
-				
-				managerList.add(mt);
-				}
-			
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return managerList;
-	}
+//	@Override
+//	public List<ManagerTable> findAll() {
+//		
+//		List<ManagerTable> managerList = new ArrayList<ManagerTable>();
+//		
+//		try {
+//			Connection conn = ConnectionUtil.getConnection();
+//			
+//			String sql = "SELECT * FROM manager FULL JOIN reimbursement ON manager.reimbursement_id = reimbursement.id";
+//			
+//			PreparedStatement stmt = conn.prepareStatement(sql);
+//			
+//			
+//			ResultSet rs = stmt.executeQuery();
+//			
+//				while(rs.next()) {
+//					
+//				int id = rs.getInt("id");
+//				String resolve_date = rs.getString("resolved_date");
+//				int resolve_manager = rs.getInt("resolved_manager");
+//				int reimbursement_id = rs.getInt("reimbursement_id");
+//				int id2 = rs.getInt("id");
+//				String posting_date = rs.getString("posting_date");
+//				Double amount = rs.getDouble("amount");
+//				String reimbursement_type = rs.getString("reimbursement_type");
+//				String description = rs.getString("description");
+//				String status = rs.getString("status");
+//				String employee_id = rs.getString("employee_id");
+//				
+//				
+//				Employee em = new Employee(Integer.parseInt(employee_id));
+//				Reimbursement r = new Reimbursement(id2, posting_date, amount, reimbursement_type, description, status, employee_id);
+//				ManagerTable mt = new ManagerTable(id, resolve_date, resolve_manager , reimbursement_id , r);
+//			
+//				
+//				System.out.println(stmt);
+//				managerList.add(mt);
+//				}
+//			
+//			
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		return managerList;
+//	}
 
 	@Override
 	public void delete(ManagerTable mt) {
@@ -106,7 +112,7 @@ public class ManagerTableDaoImpl implements ManagerTableDao{
 	}
 
 	@Override
-	public boolean insert(Employee em, Reimbursement r) {
+	public boolean insert(int resolveManagerId , Reimbursement r) {
 
 		PreparedStatement stmt = null;
 		PreparedStatement stmt2 = null;
@@ -117,9 +123,11 @@ public class ManagerTableDaoImpl implements ManagerTableDao{
 			
 			String sql = "INSERT INTO manager (resolved_manager, reimbursment_id) VALUES ( ?, ? )";
 			String sql2 = "INSERT INTO reimbursement (status) VALUES (?)";
+//			String sql2 = "UPDATE reimbursement SET status = (?) WHERE reimbursement.id = (?)
+//			UPDATE reimbursement SET status = 'Approved' WHERE reimbursement.id = 4
 			
 			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, em.getId());
+			stmt.setInt(1, resolveManagerId);
 			stmt.setInt(2, r.getId());
 			
 			stmt2 = conn.prepareStatement(sql2);
@@ -136,6 +144,12 @@ public class ManagerTableDaoImpl implements ManagerTableDao{
 		}
 		return true;
 		
+	}
+
+	@Override
+	public List<ManagerTable> findAll() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

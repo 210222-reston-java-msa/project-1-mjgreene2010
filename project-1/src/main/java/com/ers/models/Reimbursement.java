@@ -10,10 +10,43 @@ public class Reimbursement {
 	private String description;
 	private String status;
 	private Employee employee;
+	private ManagerTable managertable;
 	
 	public Reimbursement() {
 		super();
 	}
+//	public Reimbursement(int id, String posting_date, Double amount2, String reimbursement_type, String description2,
+//			String status2, String employee_id, ManagerTable mt) {
+//		// TODO Auto-generated constructor stub
+//	}
+
+	public Reimbursement(int id, String postingDate, double amount, String reimbursementType, String description,
+			String status, Employee employee, ManagerTable managertable) {
+		super();
+		this.id = id;
+		this.postingDate = postingDate;
+		this.amount = amount;
+		this.reimbursementType = reimbursementType;
+		this.description = description;
+		this.status = status;
+		this.employee = employee;
+		this.managertable = managertable;
+	}
+
+	
+	
+	public Reimbursement(int id, String postingDate, double amount, String reimbursementType, String description,
+			String status, ManagerTable managertable, Employee employee) {
+		super();
+		this.id = id;
+		this.postingDate = postingDate;
+		this.amount = amount;
+		this.reimbursementType = reimbursementType;
+		this.description = description;
+		this.status = status;
+		this.employee = employee;
+		this.managertable = managertable;
+	}
 
 	public Reimbursement(int id, String postingDate, double amount, String reimbursementType, String description,
 			String status, Employee employee) {
@@ -26,23 +59,11 @@ public class Reimbursement {
 		this.status = status;
 		this.employee = employee;
 	}
-	
-	public Reimbursement(int id, String postingDate, double amount, String reimbursementType, String description,
-			String status) {
+
+	public Reimbursement(String postingDate, double amount, String reimbursementType, String description, String status,
+			Employee employee) {
 		super();
-		this.id = id;
 		this.postingDate = postingDate;
-		this.amount = amount;
-		this.reimbursementType = reimbursementType;
-		this.description = description;
-		this.status = status;
-	
-	}
-	
-	public Reimbursement(double amount, String reimbursementType, String description,
-			String status, Employee employee) {
-		super();
-	
 		this.amount = amount;
 		this.reimbursementType = reimbursementType;
 		this.description = description;
@@ -50,17 +71,18 @@ public class Reimbursement {
 		this.employee = employee;
 	}
 
-	public Reimbursement(int id2, String posting_date, Double amount2, String reimbursement_type, String description2,
-			String status2, String employee_id) {
+	public Reimbursement(int id, String postingDate, double amount, String reimbursementType, String description,
+			String status, ManagerTable managertable) {
 		super();
 		this.id = id;
-		this.postingDate = posting_date;
+		this.postingDate = postingDate;
 		this.amount = amount;
 		this.reimbursementType = reimbursementType;
 		this.description = description;
 		this.status = status;
-		this.employee = employee;
+		this.managertable = managertable;
 	}
+
 
 	public int getId() {
 		return id;
@@ -118,17 +140,26 @@ public class Reimbursement {
 		this.employee = employee;
 	}
 
+	public ManagerTable getManagertable() {
+		return managertable;
+	}
+
+	public void setManagertable(ManagerTable managertable) {
+		this.managertable = managertable;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((postingDate == null) ? 0 : postingDate.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(amount);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((employee == null) ? 0 : employee.hashCode());
 		result = prime * result + id;
+		result = prime * result + ((managertable == null) ? 0 : managertable.hashCode());
+		result = prime * result + ((postingDate == null) ? 0 : postingDate.hashCode());
 		result = prime * result + ((reimbursementType == null) ? 0 : reimbursementType.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		return result;
@@ -143,11 +174,6 @@ public class Reimbursement {
 		if (getClass() != obj.getClass())
 			return false;
 		Reimbursement other = (Reimbursement) obj;
-		if (postingDate == null) {
-			if (other.postingDate != null)
-				return false;
-		} else if (!postingDate.equals(other.postingDate))
-			return false;
 		if (Double.doubleToLongBits(amount) != Double.doubleToLongBits(other.amount))
 			return false;
 		if (description == null) {
@@ -161,6 +187,16 @@ public class Reimbursement {
 		} else if (!employee.equals(other.employee))
 			return false;
 		if (id != other.id)
+			return false;
+		if (managertable == null) {
+			if (other.managertable != null)
+				return false;
+		} else if (!managertable.equals(other.managertable))
+			return false;
+		if (postingDate == null) {
+			if (other.postingDate != null)
+				return false;
+		} else if (!postingDate.equals(other.postingDate))
 			return false;
 		if (reimbursementType == null) {
 			if (other.reimbursementType != null)
@@ -177,10 +213,15 @@ public class Reimbursement {
 
 	@Override
 	public String toString() {
-		return "Reimbursement [id=" + id + ", PostingDate=" + postingDate + ", amount=" + amount
+		return "Reimbursement [id=" + id + ", postingDate=" + postingDate + ", amount=" + amount
 				+ ", reimbursementType=" + reimbursementType + ", description=" + description + ", status=" + status
-				+ ", employee=" + employee + "]";
+				+ ", employee=" + employee + ", managertable=" + managertable + "]";
 	}
+	
+	
+	
+
+	
 	
 	
 	

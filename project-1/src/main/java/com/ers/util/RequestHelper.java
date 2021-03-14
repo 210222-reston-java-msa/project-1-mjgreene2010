@@ -176,12 +176,15 @@ public class RequestHelper {
 
 		res.setContentType("text/json");
 
-		List<ManagerTable> allManagerTable = ManagerTableService.findAll();
+		List<Reimbursement> allManagerTable = ReimbursementService.findAllM();
+//		List<Reimbursement> allReimbursements = ReimbursementService.findAll();
 
 		String json = om.writeValueAsString(allManagerTable);
+//		String json1 = om.writeValueAsString(allReimbursements);
 
 		PrintWriter pw = res.getWriter();
 		pw.println(json);
+//		pw.println(json1);
 
 	}
 
@@ -199,7 +202,7 @@ public class RequestHelper {
 
 			DecisionTemplate decisionAttempt = om.readValue(body, DecisionTemplate.class);
 
-			Employee employee = decisionAttempt.getEmployee();
+			int employee = decisionAttempt.getResolvedManagerId();
 			Reimbursement reimbursementId = decisionAttempt.getReimbursement();
 			Reimbursement reimbursementStatus = decisionAttempt.getReimbursement();
 			

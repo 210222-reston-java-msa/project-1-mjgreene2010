@@ -48,3 +48,17 @@ CREATE TABLE manager (
 )
 
 SELECT * FROM manager;
+
+INSERT INTO manager (resolved_manager, reimbursement_id)
+	VALUES (6, 4), (6, 2)
+	
+UPDATE reimbursement SET status = 'Approved' WHERE reimbursement.id = 4;
+
+UPDATE reimbursement SET status = 'Denied' WHERE reimbursement.id = 2;
+	
+INSERT INTO reimbursement (status) VALUES ('approve') WHERE reimbursement.id = 4;
+
+	
+UPDATE reimbursement 
+	
+SELECT * FROM manager FULL JOIN reimbursement ON manager.reimbursement_id = reimbursement.id

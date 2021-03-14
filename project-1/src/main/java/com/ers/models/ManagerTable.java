@@ -4,7 +4,7 @@ public class ManagerTable {
 	
 	private int id;
 	private String resolveDate;
-	private Employee employee;
+	private int resolveManagerId;
 	private int reimbursementId;
 	private Reimbursement reimbursement;
 	
@@ -12,22 +12,33 @@ public class ManagerTable {
 		super();
 	}
 
-	public ManagerTable(int id, String resolveDate, Employee employee, int reimbursementId,
+	public ManagerTable(int id, String resolveDate, int resolveManagerId, int reimbursementId,
 			Reimbursement reimbursement) {
 		super();
 		this.id = id;
 		this.resolveDate = resolveDate;
-		this.employee = employee;
+		this.resolveManagerId = resolveManagerId;
 		this.reimbursementId = reimbursementId;
 		this.reimbursement = reimbursement;
 	}
 
-	public ManagerTable(String resolveDate, Employee employee, int reimbursementId, Reimbursement reimbursement) {
+	public ManagerTable(String resolveDate, int resolveManagerId, int reimbursementId, Reimbursement reimbursement) {
 		super();
 		this.resolveDate = resolveDate;
-		this.employee = employee;
+		this.resolveManagerId = resolveManagerId;
 		this.reimbursementId = reimbursementId;
 		this.reimbursement = reimbursement;
+	}
+	
+	
+	
+	
+
+	public ManagerTable(String resolveDate, int resolveManagerId, int reimbursementId) {
+		super();
+		this.resolveDate = resolveDate;
+		this.resolveManagerId = resolveManagerId;
+		this.reimbursementId = reimbursementId;
 	}
 
 	public int getId() {
@@ -46,12 +57,12 @@ public class ManagerTable {
 		this.resolveDate = resolveDate;
 	}
 
-	public Employee getEmployee() {
-		return employee;
+	public int getResolveManagerId() {
+		return resolveManagerId;
 	}
 
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
+	public void setResolveManagerId(int resolveManagerId) {
+		this.resolveManagerId = resolveManagerId;
 	}
 
 	public int getReimbursementId() {
@@ -74,11 +85,11 @@ public class ManagerTable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((employee == null) ? 0 : employee.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((reimbursement == null) ? 0 : reimbursement.hashCode());
 		result = prime * result + reimbursementId;
 		result = prime * result + ((resolveDate == null) ? 0 : resolveDate.hashCode());
+		result = prime * result + resolveManagerId;
 		return result;
 	}
 
@@ -91,11 +102,6 @@ public class ManagerTable {
 		if (getClass() != obj.getClass())
 			return false;
 		ManagerTable other = (ManagerTable) obj;
-		if (employee == null) {
-			if (other.employee != null)
-				return false;
-		} else if (!employee.equals(other.employee))
-			return false;
 		if (id != other.id)
 			return false;
 		if (reimbursement == null) {
@@ -110,15 +116,19 @@ public class ManagerTable {
 				return false;
 		} else if (!resolveDate.equals(other.resolveDate))
 			return false;
+		if (resolveManagerId != other.resolveManagerId)
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "ManagerTable [id=" + id + ", resolveDate=" + resolveDate + ", employee=" + employee
+		return "ManagerTable [id=" + id + ", resolveDate=" + resolveDate + ", resolveManagerId=" + resolveManagerId
 				+ ", reimbursementId=" + reimbursementId + ", reimbursement=" + reimbursement + "]";
 	}
 	
 	
+	
+	
 
-}
+	}

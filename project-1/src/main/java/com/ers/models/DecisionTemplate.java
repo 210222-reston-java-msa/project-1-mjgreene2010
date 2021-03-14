@@ -2,25 +2,25 @@ package com.ers.models;
 
 public class DecisionTemplate {
 	
-	private Employee employee;
+	private int resolvedManagerId;
 	private Reimbursement reimbursement;
 	
 	public DecisionTemplate() {
 		super();
 	}
 
-	public DecisionTemplate(Employee employee, Reimbursement reimbursement) {
+	public DecisionTemplate(int resolvedManagerId, Reimbursement reimbursement) {
 		super();
-		this.employee = employee;
+		this.resolvedManagerId = resolvedManagerId;
 		this.reimbursement = reimbursement;
 	}
 
-	public Employee getEmployee() {
-		return employee;
+	public int getResolvedManagerId() {
+		return resolvedManagerId;
 	}
 
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
+	public void setResolvedManagerId(int resolvedManagerId) {
+		this.resolvedManagerId = resolvedManagerId;
 	}
 
 	public Reimbursement getReimbursement() {
@@ -35,8 +35,8 @@ public class DecisionTemplate {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((employee == null) ? 0 : employee.hashCode());
 		result = prime * result + ((reimbursement == null) ? 0 : reimbursement.hashCode());
+		result = prime * result + resolvedManagerId;
 		return result;
 	}
 
@@ -49,24 +49,20 @@ public class DecisionTemplate {
 		if (getClass() != obj.getClass())
 			return false;
 		DecisionTemplate other = (DecisionTemplate) obj;
-		if (employee == null) {
-			if (other.employee != null)
-				return false;
-		} else if (!employee.equals(other.employee))
-			return false;
 		if (reimbursement == null) {
 			if (other.reimbursement != null)
 				return false;
 		} else if (!reimbursement.equals(other.reimbursement))
+			return false;
+		if (resolvedManagerId != other.resolvedManagerId)
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "DecisionTemplate [employee=" + employee + ", reimbursement=" + reimbursement + "]";
+		return "DecisionTemplate [resolvedManagerId=" + resolvedManagerId + ", reimbursement=" + reimbursement + "]";
 	}
-	
 	
 	
 

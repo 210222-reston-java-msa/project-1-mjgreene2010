@@ -25,8 +25,8 @@ public class ManagerTableService {
 //		return rDao.insert(amount, reimbursementType, description, e);	
 //	}
 	
-	public static boolean approveDeny(Employee e, Reimbursement r1, Reimbursement r2) {
-		return mtDao.insert(e, r1) && rDao.insert(r2);
+	public static boolean approveDeny(int resolveManagerId, Reimbursement r1, Reimbursement r2) {
+		return mtDao.insert(resolveManagerId, r1) && rDao.insert(r2);
 	}
 	
 	public static boolean update(ManagerTable mt) {
@@ -63,7 +63,7 @@ public static ManagerTable findByReimbursementId(Reimbursement r) {
 }
 
 
-public static ManagerTable confirmManagerDecision( Employee resolved_manager, Reimbursement reimbursementId, Reimbursement reimbursementStatus) {
+public static ManagerTable confirmManagerDecision( int resolved_manager, Reimbursement reimbursementId, Reimbursement reimbursementStatus) {
 	
 	ManagerTable mt = findByReimbursementId(reimbursementId);
 	
@@ -71,7 +71,7 @@ public static ManagerTable confirmManagerDecision( Employee resolved_manager, Re
 		return null;
 	}
 	
-	if (mt.getEmployee().equals(resolved_manager) && (mt.getReimbursement().equals(reimbursementId)) /*&& mt.getReimbursement().equals(reimbursementStatus)*/ ){
+	if (mt.getResolveManagerId() == (resolved_manager) && (mt.getReimbursement().equals(reimbursementId)) /*&& mt.getReimbursement().equals(reimbursementStatus)*/ ){
 		return mt;
 	} else {
 		return null;
@@ -80,6 +80,8 @@ public static ManagerTable confirmManagerDecision( Employee resolved_manager, Re
 
 
 }
+
+
 	
 }
 

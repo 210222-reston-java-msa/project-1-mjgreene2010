@@ -30,17 +30,24 @@ public class ReimbursementService {
 	return rDao.findAll();
 	}
 	
+	public static List<Reimbursement> findAllM() {
+		return rDao.findAllM();
+	}
+ 	
+	@SuppressWarnings("unlikely-arg-type")
 	public static Reimbursement findByEmployeeId(Employee e) {
 		
 		List<Reimbursement> all = rDao.findAll();
 		
 		for(Reimbursement r : all) {
-			if (r.getEmployee().getId() == e.getId()) {
+			if (r.getEmployee().equals(e.getId())) {
 				return r;
 			}
 		}
 		return null;
 	}
+	
+	
 	
 
 	
