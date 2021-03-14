@@ -36,9 +36,6 @@ window.onload = function () {
             '<th scope="col">Status</th>' +
             '<th scope="col">Post Date</th> </tr>'
             
-            
-            
-            
         let table_body = document.getElementById('reimbursement-body');
         table_body.innerHTML = "";
         console.log(table_header)
@@ -63,7 +60,7 @@ window.onload = function () {
                         tr += `<td> ${data[i].id} </td>`
                         tr += `<td> ${data[i].reimbursementType} </td>`
                         tr += `<td> ${data[i].description} </td>`
-                        tr += `<td> ${data[i].amount} </td>`
+                        tr += `<td> $${data[i].amount} </td>`
                         tr += `<td> ${data[i].status} </td>`
                         tr += `<td> ${data[i].postingDate} </td>`
                         tr += '</tr>'
@@ -114,7 +111,7 @@ window.onload = function () {
                         tr += `<td> ${data[i]["employee"].id} </td>`
                         tr += `<td> ${data[i].reimbursementType} </td>`
                         tr += `<td> ${data[i].description} </td>`
-                        tr += `<td> ${data[i].amount} </td>`
+                        tr += `<td> $${data[i].amount} </td>`
                         tr += `<td> ${data[i].status} </td>`
                         tr += `<td> ${data[i].postingDate} </td>`
                         tr += `<td> ${data[i]["managertable"].resolveDate} </td>`
@@ -159,8 +156,9 @@ function expensePost() {
             console.log(json);
         });
 
-
 }
+
+
 
 
 

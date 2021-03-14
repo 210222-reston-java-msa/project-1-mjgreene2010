@@ -155,11 +155,11 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 						String reimbursement_type = rs.getString("reimbursement_type");
 						String description = rs.getString("description");
 						String status = rs.getString("status");
+						String employee_id = rs.getString("employee_id");
 //						int id = rs.getInt("id");
 						String resolve_date = rs.getString("resolved_date");
 						int resolve_manager = rs.getInt("resolved_manager");
 						int reimbursement_id = rs.getInt("reimbursement_id");
-						String employee_id = rs.getString("employee_id");
 					
 					
 					
