@@ -25,6 +25,17 @@ if (employee === null) {
 window.onload = function () {
     let currentEmployee = JSON.parse(employee)
 
+    let reimbursementButton = document.getElementById("reimbursement_button")
+    let approveDenyButton = document.getElementById("approve_deny_button")
+
+    if (currentEmployee.isManager === true) {
+        reimbursementButton.disabled = true;
+    } else {
+        approveDenyButton.disabled = true;
+    }
+    
+    let employeeButton = document
+
     if (currentEmployee.isManager === false) {
 
         let table_header = document.getElementById('reimbursement-header');
@@ -124,6 +135,8 @@ window.onload = function () {
 
             })
     }
+
+
 
 }
 

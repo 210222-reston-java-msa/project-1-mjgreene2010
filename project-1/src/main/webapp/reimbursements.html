@@ -48,23 +48,19 @@
 
     <table class="table table-striped reimbursement-table" id="reimbursement-table">
         <thead id="reimbursement-header">
-          <!-- <tr>
-            <th scope="col">Ticket# </th>
-            <th scope="col">Reimbursement Type</th>
-            <th scope="col">Description</th>
-            <th scope="col">Amount</th>
-            <th scope="col">Status</th>
-            <th scope="col">Posting Date</th>
-        </tr> -->
+     
         </thead>
         <tbody id="reimbursement-body">
        
-         
         </tbody>
       </table>
 
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reimbursementModal">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reimbursementModal" id="reimbursement_button" aria-disabled="false">
         Enter a new reimbursement request
+    </button>
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#approveDenyModal" id="approve_deny_button" aria-disabled="false">
+        Approve/Deny Request
     </button>
 
     <div class="modal fade" id="reimbursementModal" tabindex="-1" aria-labelledby="reimbursementModalLabel"
@@ -118,6 +114,38 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="approveDenyModal" tabindex="-1" aria-labelledby="approveDenyModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="approveDenyModalLabel">Approve/Deny Request</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+                <div class="modal-body">
+
+                    <form name="approve-deny-form" id="approv-deny-form"  onsubmit="approveDenyPost(event.preventDefault())">
+                        <div class="form-group row ">
+                            <div class="form-check col-sm-10">
+                                <input class="form-ckeck-input" type="radio" name="approveDenyRadio" id="approveRadio1" value="approve">
+                                <label class="form-ckeck-label" for="approveRadio1">Approve</label>
+                            </div>
+                            <div class="form-check col-sm-10">
+                                <input class="form-ckeck-input" type="radio" name="approveDenyRadio" id="denyRadio1" value="deny">
+                                <label class="form-ckeck-label" for="denyRadio1">Deny</label>
+                            </div>
+                        </div> 
+                    </form>
+
+                </div>
+
+           
+        </div>
+    </div>
+</div>
 
 
     <script type="text/javascript" src="./scripts/reimbursements.js"></script>
