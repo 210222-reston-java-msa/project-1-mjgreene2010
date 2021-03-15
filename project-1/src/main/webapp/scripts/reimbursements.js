@@ -177,9 +177,11 @@ function approveDenyPost() {
     let approveDeny = document.getElementsByName("approveDenyRadio").value
     // let result = document.getElementById("result").value
     let decision = document.querySelector('input[name=approveDenyRadio]:checked').value
-    let reimbursementId = document.getElementById("ticket")
+    let reimbursementId = document.getElementById("ticket").value
 
     console.log(decision)
+    console.log(reimbursementId)
+    console.log(currentEmployee.id)
 
     // for(let i = 0; i < approveDeny.length; i++) {
     //     if (approveDeny[i].checked) {
@@ -191,9 +193,9 @@ function approveDenyPost() {
 
         method: 'POST',
         body: JSON.stringify({
-            "status": decision,
             "managertable": {"reimbursementId" : reimbursementId},
-            "managertable": {"resolveManagerId" : currentEmployee.id}
+            "managertable": {"resolveManagerId" : currentEmployee.id},
+            "status": decision,
         }),
         headers: {
             'Content-Type': 'application/json'

@@ -203,13 +203,13 @@ public class RequestHelper {
 
 			DecisionTemplate decisionAttempt = om.readValue(body, DecisionTemplate.class);
 
-			ManagerTable employee = decisionAttempt.getMt();
+			ManagerTable employee = decisionAttempt.getMt2();
 			String status = decisionAttempt.getStatus();
 			ManagerTable reimbursementId = decisionAttempt.getMt();
-			
+	
 			log.info("The expense has been " + status);
 
-			ReimbursementService.approveDenyExpense(status, reimbursementId, employee);
+			ReimbursementService.approveDenyExpense(employee, reimbursementId, status );
 			
 			
 

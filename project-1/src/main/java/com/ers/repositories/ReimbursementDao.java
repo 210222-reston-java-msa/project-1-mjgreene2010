@@ -21,6 +21,6 @@ public interface ReimbursementDao {
 
 	public boolean insert(double amount, String reimbursementType, String description, Employee e);
 	
-	public boolean insert(String status, ManagerTable mt, ManagerTable mt2);
+	public boolean insert(ManagerTable mt, ManagerTable mt2, String status);
 
 }

@@ -2,16 +2,16 @@ function sendLogin() {
 
     console.log("send login trigger");
 
-    let username1 = document.getElementById('empUsername').value;
-    let passwor1 = document.getElementById('empPassword').value;
+    let username = document.getElementById('empUsername').value;
+    let password = document.getElementById('empPassword').value;
 
     console.log(`username: ${username}`);
     console.log(`password: ${password}`)
 
     //object literal
     let loginCredentials = {
-        username: username1,
-        password: password1
+        username: username,
+        password: password
     }
 
    // 1. get the XMLHttpRequest Object if.e ... let xhr = ...

@@ -182,7 +182,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 		}
 
 	@Override
-	public boolean insert(String status, ManagerTable mt, ManagerTable mt2) {
+	public boolean insert(ManagerTable mt, ManagerTable mt2, String status) {
 		PreparedStatement stmt = null;
 		PreparedStatement stmt2 = null;
 		

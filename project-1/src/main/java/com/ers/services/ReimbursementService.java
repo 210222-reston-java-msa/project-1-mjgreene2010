@@ -22,8 +22,8 @@ public class ReimbursementService {
 		return rDao.insert(amount, reimbursementType, description, e);	
 	}
 	
-	public static boolean approveDenyExpense(String status, ManagerTable mt, ManagerTable mt2) {
-		return rDao.insert(status, mt, mt2);
+	public static boolean approveDenyExpense(ManagerTable mt, ManagerTable mt2, String status) {
+		return rDao.insert(mt, mt2, status);
 	}
 	
 	public static boolean update(Reimbursement r) {
