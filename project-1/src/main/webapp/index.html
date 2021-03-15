@@ -24,7 +24,7 @@
 	</div>
 
 	<div class="container-fluid">
-		<form name="loginForm" onsubmit="sendLogin(event.preventDefault())"> <!-- we can add event listener here to trigger a JS function-->
+		<form name="loginForm" method="post" onclick="sendLogin(event.preventDefault())"> <!-- we can add event listener here to trigger a JS function-->
 			<div class="form-group">
 
 				<label for="uName">USERNAME</label>
@@ -40,7 +40,7 @@
 
                 <br />
 
-				<button type="submit" class="btn btn-primary">Submit</button>
+				<button type="submit" class="btn btn-primary"><a href="http://localhost8080/project-1/login"></a>Submit</button>
 
 
 			</div>

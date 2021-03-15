@@ -25,9 +25,9 @@ public class ManagerTableService {
 //		return rDao.insert(amount, reimbursementType, description, e);	
 //	}
 	
-	public static boolean approveDeny(int resolveManagerId, Reimbursement r1, Reimbursement r2) {
-		return mtDao.insert(resolveManagerId, r1) && rDao.insert(r2);
-	}
+//	public static boolean approveDeny(ManagerTable mt, Reimbursement r1, Reimbursement r2) {
+//		return mtDao.insert(mt, r1) && rDao.insert(r2);
+//	}
 	
 	public static boolean update(ManagerTable mt) {
 		return mtDao.update(mt);
@@ -81,22 +81,11 @@ public static ManagerTable confirmManagerDecision( int resolved_manager, Reimbur
 
 }
 
-
+public static void approveDeny(int employee, Reimbursement reimbursementId, Reimbursement reimbursementStatus) {
+	// TODO Auto-generated method stub
+	
+}
 	
 }
 
-//public static Reimbursement confirmExpPost(double amount, String reimbursementType, String description, Employee employeeId) {
-//	
-//	//from the method above
-//	Reimbursement r = findByEmployeeId(employeeId);
-//	
-//	if (r == null) {
-//		return null;
-//	}
-//	
-//	if (r.getAmount() == (amount) && r.getReimbursementType().equals(reimbursementType) && r.getDescription().equals(description)) {
-//		return r;
-//	} else {
-//		return null;
-//	}
-//}
+

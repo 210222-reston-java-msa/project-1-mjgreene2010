@@ -3,6 +3,7 @@ package com.ers.services;
 import java.util.List;
 
 import com.ers.models.Employee;
+import com.ers.models.ManagerTable;
 import com.ers.models.Reimbursement;
 import com.ers.repositories.ReimbursementDao;
 import com.ers.repositories.ReimbursementDaoImpl;
@@ -19,6 +20,10 @@ public class ReimbursementService {
 	public static boolean addExpense(double amount, String reimbursementType, String description, Employee e) {
 		
 		return rDao.insert(amount, reimbursementType, description, e);	
+	}
+	
+	public static boolean approveDenyExpense(String status, ManagerTable mt, ManagerTable mt2) {
+		return rDao.insert(status, mt, mt2);
 	}
 	
 	public static boolean update(Reimbursement r) {
@@ -47,8 +52,19 @@ public class ReimbursementService {
 		return null;
 	}
 	
+	public static ManagerTable findByReimbursementId(ManagerTable mt) {
+		
+		List<Reimbursement> all = rDao.findAllM();
+		
+		for(Reimbursement rId : all) {
+			if (mt.getId() == mt.getId()) {
+				return mt;
+			}
+		}
+		return mt;
+	}
 	
-	
+
 
 	
 	public static Reimbursement confirmExpPost(double amount, String reimbursementType, String description, Employee employeeId) {
@@ -68,5 +84,22 @@ public class ReimbursementService {
 		}
 	}
 		
-	
+	@SuppressWarnings("unlikely-arg-type")
+	public static ManagerTable confirmManagerDecision( String status, ManagerTable reimbursementId, ManagerTable resolvedManagerId) {
+		
+		ManagerTable mt = findByReimbursementId(reimbursementId);
+		
+		if (mt == null) {
+			return null;
+		}
+		
+		
+		if (Integer.toString(mt.getReimbursementId()).equals(reimbursementId) ){
+			return mt;
+		} else {
+			return null;
+			
+		}
+
+	}
 }

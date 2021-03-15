@@ -181,6 +181,40 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 			return managerList;
 		}
 
+	@Override
+	public boolean insert(String status, ManagerTable mt, ManagerTable mt2) {
+		PreparedStatement stmt = null;
+		PreparedStatement stmt2 = null;
+		
+		try {
+			
+			Connection conn = ConnectionUtil.getConnection();
+			
+			String sql = "INSERT INTO manager (resolved_manager, reimbursment_id) VALUES ( ?, ? )";
+			String sql2 = "UPDATE reimbursement SET status = (?) WHERE reimbursement.id = (?)";
+			
+			stmt = conn.prepareStatement(sql);
+			stmt2 = conn.prepareStatement(sql2);
+			
+			stmt.setInt(1, mt.getResolveManagerId());
+			stmt.setInt(2, mt.getReimbursementId());
+			
+			stmt2.setString(1, status);
+			stmt2.setInt(2, mt.getReimbursementId());
+			
+			if(!stmt.execute() && !stmt2.execute()) {
+				return false;
+			}
+			
+		} catch (SQLException e) {
+			
+			log.warn("Unable to insert into manager's table", e);
+			return false;	
+		}
+		return true;
+		
+	}
+		
 	
 
 

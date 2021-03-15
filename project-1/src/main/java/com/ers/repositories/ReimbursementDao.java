@@ -3,6 +3,7 @@ package com.ers.repositories;
 import java.util.List;
 
 import com.ers.models.Employee;
+import com.ers.models.ManagerTable;
 import com.ers.models.Reimbursement;
 
 
@@ -19,5 +20,7 @@ public interface ReimbursementDao {
 	public Reimbursement delete();
 
 	public boolean insert(double amount, String reimbursementType, String description, Employee e);
+	
+	public boolean insert(String status, ManagerTable mt, ManagerTable mt2);
 
 }

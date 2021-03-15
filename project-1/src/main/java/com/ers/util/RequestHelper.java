@@ -154,21 +154,21 @@ public class RequestHelper {
 
 		ReimbursementService.addExpense(amount, reimbursement_type, description, employee);
 
-		Reimbursement r = ReimbursementService.confirmExpPost(amount, reimbursement_type, description, employee);
-//		
-		if (r != null) {
-
-			PrintWriter pw = res.getWriter();
-			res.setContentType("application/json");
-
-			// this is converting our Java Object (with property firstName!) to JSON format
-			// ... that means we can grab the firstName property after we parse it
-			pw.println(om.writeValueAsString(r));
-
-			log.info(employee + " has successfully posted");
-		} else {
-			res.setStatus(204);// have a connection but no content
-		}
+//		Reimbursement r = ReimbursementService.confirmExpPost(amount, reimbursement_type, description, employee);
+////		
+//		if (r != null) {
+//
+//			PrintWriter pw = res.getWriter();
+//			res.setContentType("application/json");
+//
+//			// this is converting our Java Object (with property firstName!) to JSON format
+//			// ... that means we can grab the firstName property after we parse it
+//			pw.println(om.writeValueAsString(r));
+//
+//			log.info(employee + " has successfully posted");
+//		} else {
+//			res.setStatus(204);// have a connection but no content
+//		}
 
 	}
 	
@@ -191,40 +191,43 @@ public class RequestHelper {
 	public static void processManagerDecision(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		BufferedReader reader = req.getReader();
 		StringBuilder s = new StringBuilder();
+		
 
 		String line = reader.readLine();
 		while (line != null) {
 			s.append(line);
 			line = reader.readLine();
-
+		}
 			String body = s.toString();
 			log.info(body);
 
 			DecisionTemplate decisionAttempt = om.readValue(body, DecisionTemplate.class);
 
-			int employee = decisionAttempt.getResolvedManagerId();
-			Reimbursement reimbursementId = decisionAttempt.getReimbursement();
-			Reimbursement reimbursementStatus = decisionAttempt.getReimbursement();
+			ManagerTable employee = decisionAttempt.getMt();
+			String status = decisionAttempt.getStatus();
+			ManagerTable reimbursementId = decisionAttempt.getMt();
 			
-			log.info("Employee approved " + employee);
+			log.info("The expense has been " + status);
+
+			ReimbursementService.approveDenyExpense(status, reimbursementId, employee);
 			
-			ManagerTableService.approveDeny(employee, reimbursementId, reimbursementStatus);
 			
-
-			ManagerTable mt = ManagerTableService.confirmManagerDecision(employee, reimbursementId, reimbursementStatus);
-
-			if (mt != null) {
-				PrintWriter pw = res.getWriter();
-				res.setContentType("application/json");
-
-				pw.println(om.writeValueAsString(mt));
-
-			} else {
-				res.setStatus(204); // have a connection but no content
-			}
 
 		}
-
-	}
-
+	
 }
+
+//		ManagerTable mt = ReimbursementService.confirmManagerDecision(status, employee, reimbursementId);    
+//		if (mt != null) {
+//			PrintWriter pw = res.getWriter();
+//			res.setContentType("application/json");
+//
+//			pw.println(om.writeValueAsString(mt));
+//
+//		} else {
+//			res.setStatus(204); // have a connection but no content
+//		}
+//
+//	}
+//
+//}

@@ -1,8 +1,13 @@
 .jumbotron {
     background-color: lightblue;
     margin-bottom: 20px;
+
 }
 
 #reimbursement-title {
     text-align: center;
+}
+
+.navbar {
+  
 }

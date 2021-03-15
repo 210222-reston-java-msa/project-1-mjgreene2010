@@ -1,7 +1,5 @@
 let employee = sessionStorage.getItem("currentUser");
 
-let reimbursement
-
 //if the employee is null, redirect to index.html
 
 if (employee === null) {
@@ -171,6 +169,45 @@ function expensePost() {
 
 }
 
+function approveDenyPost() {
+
+    console.log("post is firing")
+    let currentEmployee = JSON.parse(employee);
+
+    let approveDeny = document.getElementsByName("approveDenyRadio").value
+    // let result = document.getElementById("result").value
+    let decision = document.querySelector('input[name=approveDenyRadio]:checked').value
+    let reimbursementId = document.getElementById("ticket")
+
+    console.log(decision)
+
+    // for(let i = 0; i < approveDeny.length; i++) {
+    //     if (approveDeny[i].checked) {
+    //         result.innerHTML = approveDeny[i].value
+    //     }
+    // }
+
+    fetch('http://localhost:8080/project-1/managerpost', {
+
+        method: 'POST',
+        body: JSON.stringify({
+            "status": decision,
+            "managertable": {"reimbursementId" : reimbursementId},
+            "managertable": {"resolveManagerId" : currentEmployee.id}
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+
+        .then(response => response.json())
+
+        .then(json => {
+            console.log(json);
+        });
+
+
+}
 
 
 
